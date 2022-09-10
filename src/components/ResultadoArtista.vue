@@ -26,7 +26,11 @@
           >
             <div
               class="card"
-              style="width: 12rem; background-color: #151618"
+              style="
+                width: 12rem;
+                background-color: #151618;
+                border-color: #151618;
+              "
               href="this.$router.push('/song-found')"
             >
               <img

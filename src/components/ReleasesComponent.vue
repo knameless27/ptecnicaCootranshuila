@@ -14,7 +14,14 @@
       <div class="grow2">
         <section class="layoutSectionCards">
           <div v-for="(data, index) in NRelease" :key="index">
-            <div class="card" style="width: 12rem; background-color: #151618">
+            <div
+              class="card"
+              style="
+                width: 12rem;
+                background-color: #151618;
+                border-color: #151618;
+              "
+            >
               <img
                 class="card-img-top"
                 :src="data.imagen"
@@ -90,11 +97,9 @@ export default {
 <style scoped lang="scss">
 .newReleases {
   padding-top: 10rem;
-  background-color: #151618;
 }
 .layout {
   width: 100%;
-
   display: flex;
   gap: 16px;
 }

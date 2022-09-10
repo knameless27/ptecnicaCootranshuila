@@ -55,7 +55,6 @@
                 <h7 style="color: #3e3f42">{{ data.anno.substr(0, 4) }}</h7>
               </div>
             </section>
-            <hr />
           </div>
           <div class="footerRight">
             <h5>Most popular tracks</h5>
@@ -68,27 +67,27 @@
                     :key="index"
                     class="albumesPTracks"
                   >
-                    <table class="tablaTracks">
-                      <td>
-                        <h6>{{ index + 1 }}</h6>
-                      </td>
-                      <td>
+                    <section class="layoutPTracks">
+                      <div>
+                        <h6 style="color: #3e3f42">{{ index + 1 }}</h6>
+                      </div>
+                      <div>
                         <img
                           :src="data.imagen"
                           alt=""
                           class="albImagenPTracks"
                         />
-                      </td>
-                      <td>
+                      </div>
+                      <div>
                         <div class="TrackTextos">
                           <h6>{{ data.name }}</h6>
                           <h7 style="color: #3e3f42">{{ data.nameAlb }}</h7>
                         </div>
-                      </td>
-                      <td>
+                      </div>
+                      <div>
                         <h7 style="color: #3e3f42">{{ data.duracion }}</h7>
-                      </td>
-                    </table>
+                      </div>
+                    </section>
                     <hr />
                   </div>
                 </td>
@@ -214,24 +213,20 @@ h5 {
 hr {
   max-width: 30%;
 }
-.trackTdImg {
-  max-width: 60px;
-  max-height: 60px;
+.layoutPTracks {
+  width: 1366px;
+  height: 50px;
+
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 1fr);
+  grid-template-columns: 20px 120px 500px 10px;
+  gap: 8px;
 }
 .trackTextos {
   text-align: right;
 }
 .tablaTracks {
   width: 650px;
-}
-.layoutPTracks {
-  width: 100%;
-  height: 100%;
-
-  display: grid;
-  grid-template-rows: repeat(auto-fit, 1px);
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
 }
 .albumesPTracks {
   text-align: left;
@@ -255,7 +250,7 @@ hr {
 
   display: grid;
   grid-template-rows: repeat(auto-fit, 1px);
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 150px);
   gap: 8px;
 }
 .aboutZone {

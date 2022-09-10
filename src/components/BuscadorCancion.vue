@@ -33,9 +33,6 @@ export default {
     song() {
       this.$router.push("/song-found");
     },
-    submitxd() {
-      return console.log(this.message);
-    },
   },
 };
 </script>

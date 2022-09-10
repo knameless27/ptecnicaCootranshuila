@@ -14,7 +14,14 @@
       <div class="grow2">
         <section class="layoutSectionCards">
           <div v-for="(data, index) in NRelease" :key="index">
-            <div class="card" style="width: 12rem; background-color: #151618">
+            <div
+              class="card"
+              style="
+                width: 12rem;
+                background-color: #151618;
+                border-color: #151618;
+              "
+            >
               <img
                 class="card-img-top"
                 :src="data.imagen"
@@ -72,7 +79,6 @@ export default {
     )
       .then((res) => res.json())
       .then((response) => {
-        console.log(response);
         for (let i = 0; i < response.tracks.items.length; i++) {
           NewRelease = {
             name: response.tracks.items[i].name,
