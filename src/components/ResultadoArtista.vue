@@ -17,7 +17,10 @@
             v-for="(data, index) in NRelease"
             :key="index"
             v-on:click="
-              artist(data.name), artistImagen(data.imagen), pushArtist()
+              artist(data.name),
+                artistImagen(data.imagen),
+                artistId(data.id),
+                pushArtist()
             "
             style="cursor: pointer"
           >
@@ -71,6 +74,9 @@ export default {
     artist(name) {
       this.$store.commit("recibirPerfil", name);
     },
+    artistId(id) {
+      this.$store.commit("recibirId", id);
+    },
     artistImagen(imagen) {
       this.$store.commit("recibirPerfilImagen", imagen);
     },
@@ -96,6 +102,7 @@ export default {
           NewRelease = {
             name: response.artists.items[i].name,
             imagen: response.artists.items[i].images[0].url,
+            id: response.artists.items[i].id,
           };
           this.NRelease.push(NewRelease);
         }

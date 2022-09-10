@@ -8,6 +8,7 @@ const store = createStore({
       mensaArt: "",
       name: "",
       imagen: "",
+      id: "",
     };
   },
   mutations: {
@@ -22,6 +23,9 @@ const store = createStore({
     },
     recibirPerfilImagen(state, imagen) {
       state.imagen = imagen;
+    },
+    recibirId(state, id) {
+      state.id = id;
     },
   },
   getters: {},
