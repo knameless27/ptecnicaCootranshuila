@@ -18,7 +18,6 @@ export default {
 
 <style>
 .artists-found {
-  padding-top: 10rem;
   background-color: #151618;
 }
 

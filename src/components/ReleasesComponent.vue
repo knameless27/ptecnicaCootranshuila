@@ -1,11 +1,14 @@
 <template>
-  <div class="buscador-cancion">
-    <img src="@/assets/flecha-correcta.png" alt="" />
+  <div class="releases-component">
+    <br />
     <img
       src="@/assets/flecha-correcta.png"
       alt=""
-      style="transform: scaleX(-1)"
+      style="transform: scaleX(-1); padding-right: 80%; align-items: right"
     />
+    <img src="@/assets/flecha-correcta.png" alt="" />
+    <br />
+    <hr style="color: #151618" />
     <section class="layout">
       <div class="grow1"></div>
       <div class="grow2">
@@ -42,61 +45,43 @@
 
 <script>
 //import axios from "axios";
-//let NewRelease;
-var SpotifyWebApi = require("spotify-web-api-node");
-
-// credentials are optional
-var spotifyApi = new SpotifyWebApi({
-  clientId: "918a7f4dd93342b596a1adcbb2a6a7f1",
-  clientSecret: "9e06cb03cffa42d8980ef9877d1c357b",
-  redirectUri: "http://localhost:8080/",
-});
+let NewRelease;
 
 export default {
   name: "ReleasesComponent",
   data() {
     return {
       NRelease: [],
+      token: localStorage.token,
     };
   },
   props: {
     msg: String,
   },
   created() {
-    spotifyApi.getArtistAlbums("43ZHCT0cAZBISjO8DG9PnE").then(
-      function (data) {
-        console.log("Artist albums", data.body);
-      },
-      function (err) {
-        console.error(err);
+    fetch(
+      "https://api.spotify.com/v1/browse/new-releases?country=co&limit=20&offset=5",
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + this.token,
+        },
       }
-    );
-    // fetch(
-    //   "https://api.spotify.com/v1/browse/new-releases?country=co&limit=20&offset=5",
-    //   {
-    //     method: "GET",
-    //     headers: {
-    //       Authorization:
-    //         "Bearer BQCvspIllu60faaT0HLlrRzFFnPOdrOLvGbJn5O0mOfTaQmGDAyLYqfPCvGLb9rsY8DS1S9o7wclaMaQqT8JtQNIU4NYk4knCglnCemyYT-ntQFthBKU4-qHxH1JuvU1khC8wKXUqBOsKk8XUdSAbUIrJoN8Synpmk46AN5umozfgKmEBXfGF7HCawj3IKGU-c8w6jqiI84Z1IKBeuJNNz2ZYk32PY81vEPttcsQ3YvhFGDUBCM2Ym5eizqM8YBxk34TAQOGJBHWfjU5CIxZMgo405IuCM0hSxHsLuK3YnXVCO1MmLuBInSOkJXwa6snTo4",
-    //     },
-    //   }
-    // )
-    //   .then((res) => res.json())
-    //   .then((response) => {
-    //     console.log(response.albums.items);
-    //     for (let i = 0; i < response.albums.items.length; i++) {
-    //       console.log(response.albums.items[i]);
-    //       NewRelease = {
-    //         name: response.albums.items[i].name,
-    //         artista: response.albums.items[i].artists[0].name,
-    //         imagen: response.albums.items[i].images[0].url,
-    //       };
-    //       this.NRelease.push(NewRelease);
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
+    )
+      .then((res) => res.json())
+      .then((response) => {
+        for (let i = 0; i < response.albums.items.length; i++) {
+          NewRelease = {
+            name: response.albums.items[i].name,
+            artista: response.albums.items[i].artists[0].name,
+            imagen: response.albums.items[i].images[0].url,
+          };
+          this.NRelease.push(NewRelease);
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   },
 };
 </script>
