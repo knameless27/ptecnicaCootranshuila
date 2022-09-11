@@ -1,6 +1,6 @@
 <template>
   <div class="newReleases">
-    <h1 class="titulo">New Releases</h1>
+    <h1 class="titulo">Nuevos Lanzamientos</h1>
     <releases-comp />
   </div>
 </template>

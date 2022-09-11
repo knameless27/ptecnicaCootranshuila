@@ -16,7 +16,12 @@
           $store.commit('misajeArt', message), (message = ''), song()
         "
         class="input"
-      />
+      /><button
+        style="border-radius: 50%"
+        v-on:click="$store.commit('misajeArt', message), (message = ''), song()"
+      >
+        <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+      </button>
     </div>
   </div>
 </template>

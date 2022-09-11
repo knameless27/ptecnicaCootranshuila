@@ -24,7 +24,9 @@
               <h5>Similar a {{ name }}</h5>
               <section class="layoutSim">
                 <div v-for="(data, index) in relatedArtists" :key="index">
-                  <img :src="data.imagen" alt="" class="relatedImages" />
+                  <a :href="data.href"
+                    ><img :src="data.imagen" alt="" class="relatedImages"
+                  /></a>
                 </div>
               </section>
             </div>
@@ -36,23 +38,17 @@
           <div class="headerRight">
             <section class="layoutTopAlbums">
               <div class="grow1"><h5>Albums</h5></div>
-              <div class="grow1">
-                <img
-                  src="@/assets/flecha-correcta.png"
-                  alt=""
-                  style="transform: scaleX(-1)"
-                />
-                <img src="@/assets/flecha-correcta.png" alt="" />
-              </div>
               <div class="grow1"></div>
             </section>
           </div>
           <div class="mainRight">
             <section class="layoutAlbums">
               <div v-for="(data, index) in albums" :key="index" class="albumes">
-                <img :src="data.imagen" alt="" class="albImagen" />
-                <h6>{{ data.name }}</h6>
-                <h7 style="color: #3e3f42">{{ data.anno.substr(0, 4) }}</h7>
+                <a :href="data.href" style="text-decoration: none">
+                  <img :src="data.imagen" alt="" class="albImagen" />
+                  <h6>{{ data.name }}</h6>
+                  <h7 style="color: #3e3f42">{{ data.anno.substr(0, 4) }}</h7>
+                </a>
               </div>
             </section>
           </div>
@@ -67,28 +63,30 @@
                     :key="index"
                     class="albumesPTracks"
                   >
-                    <section class="layoutPTracks">
-                      <div>
-                        <h6 style="color: #3e3f42">{{ index + 1 }}</h6>
-                      </div>
-                      <div>
-                        <img
-                          :src="data.imagen"
-                          alt=""
-                          class="albImagenPTracks"
-                        />
-                      </div>
-                      <div>
-                        <div class="TrackTextos">
-                          <h6>{{ data.name }}</h6>
-                          <h7 style="color: #3e3f42">{{ data.nameAlb }}</h7>
+                    <a :href="data.href" style="text-decoration: none">
+                      <section class="layoutPTracks">
+                        <div>
+                          <h6 style="color: #3e3f42">{{ index + 1 }}</h6>
                         </div>
-                      </div>
-                      <div>
-                        <h7 style="color: #3e3f42">{{ data.duracion }}</h7>
-                      </div>
-                    </section>
-                    <hr />
+                        <div>
+                          <img
+                            :src="data.imagen"
+                            alt=""
+                            class="albImagenPTracks"
+                          />
+                        </div>
+                        <div>
+                          <div class="TrackTextos">
+                            <h6>{{ data.name }}</h6>
+                            <h7 style="color: #3e3f42">{{ data.nameAlb }}</h7>
+                          </div>
+                        </div>
+                        <div>
+                          <h7 style="color: #3e3f42">{{ data.duracion }}</h7>
+                        </div>
+                      </section>
+                      <hr />
+                    </a>
                   </div>
                 </td>
               </table>
@@ -134,6 +132,7 @@ export default {
         for (let i = 0; i < 5; i++) {
           tempoRA = {
             imagen: response.artists[i].images[0].url,
+            href: response.artists[i].external_urls.spotify,
           };
           this.relatedArtists.push(tempoRA);
         }
@@ -159,6 +158,7 @@ export default {
             name: response.items[i].name,
             imagen: response.items[i].images[0].url,
             anno: response.items[i].release_date,
+            href: response.items[i].external_urls.spotify,
           };
           this.albums.push(tempoAlb);
         }
@@ -186,6 +186,7 @@ export default {
             imagen: response.tracks[i].album.images[0].url,
             nameAlb: response.tracks[i].album.name,
             duracion: minutos + ":" + (segundos < 10 ? "0" : "") + segundos,
+            href: response.tracks[i].external_urls.spotify,
           };
           this.tracks.push(tempoTrack);
         }

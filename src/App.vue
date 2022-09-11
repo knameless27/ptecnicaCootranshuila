@@ -16,9 +16,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <section class="layout">
-        <div class="grow1"></div>
         <div class="grow1"><buscador-artista /></div>
         <div class="grow1"><buscador-cancion /></div>
+        <div class="grow1"></div>
       </section>
     </div>
   </nav>
@@ -44,10 +44,10 @@ export default {
 
 <style lang="scss">
 .layout {
-  width: 100%;
+  width: 50%;
 
   display: flex;
-  gap: 16px;
+  gap: 1px;
 }
 
 .grow1 {

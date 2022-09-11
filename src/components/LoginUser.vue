@@ -9,9 +9,7 @@ var client_secret = "9e06cb03cffa42d8980ef9877d1c357b";
 export default {
   name: "LoginUser",
   data() {
-    return {
-      token: "",
-    };
+    return {};
   },
   methods: {},
   async created() {
@@ -26,6 +24,9 @@ export default {
 
     const data = await result.json();
     localStorage.token = data.access_token;
+    if (localStorage.token === "") {
+      location.reload();
+    }
   },
 };
 </script>

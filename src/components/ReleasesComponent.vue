@@ -1,47 +1,41 @@
 <template>
   <div class="releases-component">
-    <br />
-    <img
-      src="@/assets/flecha-correcta.png"
-      alt=""
-      style="transform: scaleX(-1); padding-right: 80%; align-items: right"
-    />
-    <img src="@/assets/flecha-correcta.png" alt="" />
-    <br />
     <hr style="color: #151618" />
     <section class="layout">
       <div class="grow1"></div>
       <div class="grow2">
         <section class="layoutSectionCards">
           <div v-for="(data, index) in NRelease" :key="index">
-            <div
-              class="card"
-              style="
-                width: 12rem;
-                background-color: #151618;
-                border-color: #151618;
-              "
-            >
-              <img
-                class="card-img-top"
-                :src="data.imagen"
-                alt="Card image cap"
-              />
+            <a :href="data.href" style="text-decoration: none">
               <div
-                class="card-body"
+                class="card"
                 style="
+                  width: 12rem;
                   background-color: #151618;
-                  text-align: left;
-                  padding-left: 0rem;
-                  color: #d3d3d4;
+                  border-color: #151618;
                 "
               >
-                <h5 class="card-title">{{ data.name }}</h5>
-                <p class="card-text" style="color: #4e4e51">
-                  {{ data.artista }}
-                </p>
+                <img
+                  class="card-img-top"
+                  :src="data.imagen"
+                  alt="Card image cap"
+                />
+                <div
+                  class="card-body"
+                  style="
+                    background-color: #151618;
+                    text-align: left;
+                    padding-left: 0rem;
+                    color: #d3d3d4;
+                  "
+                >
+                  <h5 class="card-title">{{ data.name }}</h5>
+                  <p class="card-text" style="color: #4e4e51">
+                    {{ data.artista }}
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </section>
       </div>
@@ -82,6 +76,7 @@ export default {
             name: response.albums.items[i].name,
             artista: response.albums.items[i].artists[0].name,
             imagen: response.albums.items[i].images[0].url,
+            href: response.albums.items[i].external_urls.spotify,
           };
           this.NRelease.push(NewRelease);
         }
